@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>URLGuard - Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div style="max-width:900px;margin:80px auto;text-align:center">
+    <h1>Welcome to URLGuard</h1>
+    <p style="color:var(--muted)">Click below to open the dashboard.</p>
+    <a class="btn primary" href="{{ url_for('home') }}">Open Dashboard</a>
+  </div>
+</body>
+<footer>
+  <p>© 2025 URLGuard — All rights reserved.</p>
+</footer>
+
+</html>

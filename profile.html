@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - URLGuard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <section class="hero">
+    <h1 class="glow">👤 User Profile</h1>
+    <div class="result-card">
+      <p><strong>Name:</strong> {{ session['user']['name'] if session.get('user') else 'Guest' }}</p>
+      <p><strong>Email:</strong> {{ session['user']['email'] if session.get('user') else '-' }}</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 URLGuard — All rights reserved.</p>
+  </footer>
+</body>
+</html>

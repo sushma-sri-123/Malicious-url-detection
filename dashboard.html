@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | URLGuard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <section class="hero">
+    <h1 class="glow">👋 Welcome, {{ session['user']['name'] if session.get('user') else 'Guest' }}</h1>
+    <p>Detect if a website is safe using our advanced AI-powered URL analyzer.</p>
+
+    <!-- ✅ Modern Centered URL Box -->
+    <form id="urlForm" class="url-form">
+      <div class="url-box">
+        <input type="text" id="urlInput" placeholder="Enter website URL..." required>
+        <button type="submit" class="btn primary">Analyze URL</button>
+      </div>
+    </form>
+
+    <!-- ✅ Result Box -->
+    <div id="result" class="result-box"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 <strong>URLGuard</strong> — All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("urlForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const url = document.getElementById("urlInput").value;
+      const resultDiv = document.getElementById("result");
+
+      resultDiv.innerHTML = `
+        <div class="result-card loading">🔎 Analyzing... Please wait.</div>
+      `;
+
+      try {
+        const res = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+
+        const data = await res.json();
+
+        let colorClass = "";
+        if (data.result.includes("Safe")) colorClass = "safe";
+        else if (data.result.includes("Phishing")) colorClass = "phish";
+        else if (data.result.includes("Defacement")) colorClass = "danger";
+        else colorClass = "unknown";
+
+        resultDiv.innerHTML = `
+          <div class="result-card ${colorClass}">
+            <h3>🔍 Analysis Result</h3>
+            <p><strong>${data.result}</strong></p>
+            <p><em>Detection Method:</em> ${data.method}</p>
+          </div>
+        `;
+      } catch (err) {
+        resultDiv.innerHTML = `
+          <div class="result-card error">⚠️ Error analyzing URL. Please try again.</div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

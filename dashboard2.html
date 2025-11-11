@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URLGuard - AI-Powered URL Protection</title>
+
+  <!-- ✅ Link to Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- 🌐 Navbar -->
+  <header class="header">
+    <a href="{{ url_for('home') }}" class="logo">⚡ <b>URLGuard</b></a>
+    <nav class="nav">
+      <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+      <a href="{{ url_for('login_page') }}" class="nav-link">Login</a>
+      <a href="{{ url_for('signup_page') }}" class="nav-link btn primary">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- 🚀 Hero Section (Only visible part on home page) -->
+  <section class="hero">
+    <h1 class="glow">🚀 Malicious URL Detector</h1>
+    <p>
+      Protect yourself from <strong>phishing, scams, and malicious websites</strong> 
+      using AI-powered real-time URL analysis.
+    </p>
+
+    <!-- Redirects to login/signup -->
+    <a href="{{ url_for('login_page') }}" class="btn primary">Get Started</a>
+  </section>
+
+  <!-- 🌙 Footer -->
+  <footer>
+    <p>© 2025 <strong>URLGuard</strong> — All rights reserved.</p>
+  </footer>
+</body>
+</html>

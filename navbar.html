@@ -1,0 +1,16 @@
+<header class="header">
+  <a href="{{ url_for('home') }}" class="logo">⚡ URLGuard</a>
+  <nav class="nav">
+    {% if 'user' in session %}
+      <a href="{{ url_for('dashboard') }}" class="nav-link">URL Detection</a>
+      <a href="{{ url_for('profile') }}" class="nav-link">Profile</a>
+      <a href="{{ url_for('settings') }}" class="nav-link">Settings</a>
+      <a href="{{ url_for('help_page') }}" class="nav-link">Help</a>
+      <a href="{{ url_for('logout') }}" class="nav-link btn primary">Logout</a>
+    {% else %}
+      <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+      <a href="{{ url_for('login_page') }}" class="nav-link">Login</a>
+      <a href="{{ url_for('signup_page') }}" class="nav-link btn primary">Sign Up</a>
+    {% endif %}
+  </nav>
+</header>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚙️ Settings | URLGuard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <!-- 🧩 Update Profile Section -->
+  <section class="settings-section">
+    <h1 class="glow">⚙️ Update Profile</h1>
+
+    <form id="settingsForm" class="profile-box">
+      <input type="hidden" id="user_id" value="{{ session['user']['id'] }}">
+      <input id="name" placeholder="Full Name" value="{{ session['user']['name'] }}" required>
+      <input id="email" placeholder="Email" value="{{ session['user']['email'] }}" required>
+      <input type="password" id="password" placeholder="New Password" required>
+      <button type="submit" class="btn primary">Update</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 <strong>URLGuard</strong> — All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("settingsForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        user_id: document.getElementById("user_id").value,
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      };
+
+      // Show loading glow
+      const button = e.target.querySelector("button");
+      button.textContent = "Updating...";
+      button.disabled = true;
+
+      try {
+        const res = await fetch("/update_profile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json();
+        alert(json.message || json.error);
+      } catch (err) {
+        alert("⚠️ Something went wrong. Please try again.");
+      } finally {
+        button.textContent = "Update";
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

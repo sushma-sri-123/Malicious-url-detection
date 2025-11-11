@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help - URLGuard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+
+  <section class="hero">
+    <h1 class="glow">❓ Help & FAQ</h1>
+    <div class="result-card" style="text-align:left;">
+      <ul>
+        <li>Go to <strong>Home</strong> → Enter a URL → Click “Analyze”.</li>
+        <li>Sign up to track your detection history (coming soon).</li>
+        <li>If a URL shows ⚠️, avoid opening it immediately.</li>
+        <li>Use <strong>Profile</strong> and <strong>Settings</strong> to manage your account.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 URLGuard — All rights reserved.</p>
+  </footer>
+</body>
+</html>
