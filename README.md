@@ -10,5 +10,6 @@ git init
 git add .
 git commit -m "Initial commit - Malicious URL Detection"
 git branch -M main
-git remote add origin https://github.com/sushma-sri-123/Malicious-url-detection.git
+git remote add origin 
+https://github.com/sushma-sri-123/Malicious-url-detection.git
 git push -u origin main
